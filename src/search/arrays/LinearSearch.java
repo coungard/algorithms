@@ -1,6 +1,7 @@
 package search.arrays;
 
 public class LinearSearch {
+    public static int step;
 
     /**
      * Linear search for an element by index in an array.
@@ -10,7 +11,11 @@ public class LinearSearch {
      * @return index, where number found
      */
     public static int search(int[] array, int num) {
+        step = 0;
+
         for (int i = 0; i < array.length; i++) {
+            step++;
+
             if (array[i] == num) {
                 return i;
             }

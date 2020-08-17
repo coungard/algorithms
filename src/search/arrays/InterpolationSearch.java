@@ -3,7 +3,17 @@ package search.arrays;
 public class InterpolationSearch {
     public static int step;
 
-    // 0 + (9 - 0) / (10 - 1) * (6 - 1) 
+    /**
+     * Interpolation search for an element by index in an array.
+     * Position calculated by the formula: <br>
+     * <strong> startIndex + ((lastIndex-startIndex) / (array[lastIndex]
+     * - array[startIndex]) * (elementToSearch - array[startIndex])) </strong>
+     * Used for evenly spaced elements.
+     *
+     * @param array array, where we searching
+     * @param key target number
+     * @return index, where number found
+     */
     public static int search(int[] array, int key) {
         step = 0;
         int low = 0;
@@ -12,7 +22,7 @@ public class InterpolationSearch {
         while ((low <= high) && (key >= array[low]) && (key <= array[high])) {
             step++;
 
-            if (low == high) {
+            if (low == high || array[high] == array[low]) {
                 if (array[high] == key)
                     return high;
                 else
@@ -20,7 +30,7 @@ public class InterpolationSearch {
             }
 
             // используем формулу интерполяции для поиска возможной лучшей позиции для существующего элемента
-            int pos = low + (((high - low) / (array[high] - array[low])) * (key - array[low]));
+            int pos = low + ((high - low) / (array[high] - array[low]) * (key - array[low]));
 
             if (array[pos] == key) {
                 return pos;
