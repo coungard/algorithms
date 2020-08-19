@@ -2,24 +2,27 @@ import search.arrays.BinarySearch;
 import search.arrays.InterpolationSearch;
 import search.arrays.JumpSearch;
 import search.arrays.LinearSearch;
+import search.text.KnuthMorrisPrathPatternSearch;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Test {
     private static int[] array;
     private static final int BOUND = 1_000_000;
 
     public static void main(String[] args) {
-        array = new Random().ints(0, BOUND).limit(BOUND).toArray();
-        Arrays.sort(array);
+        String pattern = "AAABAAA";
+        String text = "ASBNSAAAAAABAAAAABAAAAAGAHUHDJKDDKSHAAJF";
 
-        int[] values = new Random().ints(0, BOUND).limit(100).toArray();
+        List<Integer> foundIndexes = KnuthMorrisPrathPatternSearch.performKMPSearch(text, pattern);
 
-        linearTest(values);
-        binaryTest(values);
-        jumpTest(values);
-        interpolationTest(values);
+        if (foundIndexes.isEmpty()) {
+            System.out.println("Pattern not found in the given text String");
+        } else {
+            System.out.println("Pattern found in the given text String at positions: "
+                    + foundIndexes.stream().map(Object::toString).collect(Collectors.joining(", ")));
+        }
 
     }
 

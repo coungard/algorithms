@@ -4,6 +4,13 @@ public class JumpSearch {
 
     public static int step;
 
+    /**
+     * Time complexity = O(sqrt(n))
+     *
+     * @param array array, where we searching
+     * @param key target number
+     * @return index, where number found
+     */
     public static int search(int[] array, int key) {
         step = 0;
 

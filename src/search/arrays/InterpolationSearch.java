@@ -8,7 +8,9 @@ public class InterpolationSearch {
      * Position calculated by the formula: <br>
      * <strong> startIndex + ((lastIndex-startIndex) / (array[lastIndex]
      * - array[startIndex]) * (elementToSearch - array[startIndex])) </strong>
-     * Used for evenly spaced elements.
+     * Used for evenly spaced elements. <br>
+     *
+     * Time complexity = O(log(log(n))), for evenly distributed array, O(n) - for others.
      *
      * @param array array, where we searching
      * @param key target number

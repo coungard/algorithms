@@ -4,7 +4,8 @@ public class BinarySearch {
     public static int step;
 
     /**
-     * Binary search for an element by index in an array. Work only for sorted arrays.
+     * Binary search for an element by index in an array. Work only for sorted arrays. <br>
+     * Time complexity = O(log(n))
      *
      * @param array array, where we searching
      * @param num target number
