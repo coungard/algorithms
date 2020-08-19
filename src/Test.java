@@ -1,17 +1,37 @@
-import search.arrays.BinarySearch;
-import search.arrays.InterpolationSearch;
-import search.arrays.JumpSearch;
-import search.arrays.LinearSearch;
+import search.arrays.*;
 import search.text.KnuthMorrisPrathPatternSearch;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Test {
     private static int[] array;
-    private static final int BOUND = 1_000_000;
+    private static final int BOUND = 100_000_000;
 
     public static void main(String[] args) {
+        array = new Random().ints(0, Integer.MAX_VALUE).limit(BOUND).toArray();
+        Arrays.sort(array);
+
+        int[] values = new Random().ints(0, 100000).limit(100000).toArray();
+
+        exponentialTest(values);
+        binaryTest(values);
+    }
+
+    private static void exponentialTest(int[] values) {
+        System.out.println("Exponential search...");
+        long before = System.currentTimeMillis();
+
+        for (int value : values) {
+            int index = ExponentialSearch.search(array, value);
+        }
+        System.out.println("Exponential elapsed: " + (System.currentTimeMillis() - before));
+        System.out.println("\n");
+    }
+
+    private static void knutMorrisPrathTest() {
         String pattern = "AAABAAA";
         String text = "ASBNSAAAAAABAAAAABAAAAAGAHUHDJKDDKSHAAJF";
 
@@ -23,7 +43,6 @@ public class Test {
             System.out.println("Pattern found in the given text String at positions: "
                     + foundIndexes.stream().map(Object::toString).collect(Collectors.joining(", ")));
         }
-
     }
 
     private static void jumpTest(int[] values) {
@@ -51,14 +70,14 @@ public class Test {
     }
 
     private static void binaryTest(int[] values) {
-        System.out.println("\nBinary search...");
+        System.out.println("Binary search...");
         long before = System.currentTimeMillis();
 
         for (int value : values) {
             int index = BinarySearch.search(array, value);
-            System.out.print("For value " + value + " steps = " + BinarySearch.step + " (index = " + index + "), ");
+//            System.out.print("For value " + value + " steps = " + BinarySearch.step + " (index = " + index + "), ");
         }
-        System.out.println("\nBinary elapsed: " + (System.currentTimeMillis() - before));
+        System.out.println("Binary elapsed: " + (System.currentTimeMillis() - before));
         System.out.println("\n");
     }
 
